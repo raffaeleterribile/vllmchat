@@ -6,7 +6,7 @@ Avviare il server vLLM con:
 
 vllm serve facebook/opt-125m
 
-Esempi di usi con curl
+Esempi di utilizzo con curl
 
 Elenco dei modelli
 curl http://localhost:8000/v1/models
