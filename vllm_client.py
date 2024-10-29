@@ -1,15 +1,16 @@
+""" Esempio di client Python per l'utilizzo di vLLM tramite l'API di OpenAI. """
 from openai import OpenAI
 
 # Modify OpenAI's API key and API base to use vLLM's API server.
-openai_api_key = "EMPTY"
-openai_api_base = "http://localhost:8000/v1"
+OPENAI_API_KEY = "EMPTY"
+OPENAI_API_BASE = "http://localhost:8000/v1"
 
 MODEL_ID = "microsoft/Phi-3-mini-128k-instruct"
 
 # Esempio di completamento - Url di esempio: http://localhost:8000/v1/completions
 client = OpenAI(
-	api_key=openai_api_key,
-	base_url=openai_api_base,
+	api_key=OPENAI_API_KEY,
+	base_url=OPENAI_API_BASE,
 )
 
 print(">>> Esempio di completamento")
@@ -22,8 +23,8 @@ print("Completion result:", completion)
 # Esempio di chat - Url di esempio: http://localhost:8000/v1/chat/completions
 print(">>> Esempio di chat")
 client = OpenAI(
-	api_key=openai_api_key,
-	base_url=openai_api_base,
+	api_key=OPENAI_API_KEY,
+	base_url=OPENAI_API_BASE,
 )
 
 chat_response = client.chat.completions.create(model=MODEL_ID,
@@ -39,8 +40,8 @@ print("Chat response:", chat_response)
 # Esempio di streaming chat - Url di esempio: http://localhost:8000/v1/chat/completions
 print(">>> Esempio di streaming chat")
 client = OpenAI(
-	api_key=openai_api_key,
-	base_url=openai_api_base,
+	api_key=OPENAI_API_KEY,
+	base_url=OPENAI_API_BASE,
 )
 
 stream = client.chat.completions.create(model=MODEL_ID,
@@ -53,9 +54,9 @@ stream = client.chat.completions.create(model=MODEL_ID,
 												]
 )
 # Print generated text from response stream
-partial_message = ""
+accumulated_message = ""
 for chunk in stream:
-	partial_message += (chunk.choices[0].delta.content or "")
-	print(partial_message)
+	accumulated_message += (chunk.choices[0].delta.content or "")
+	print(accumulated_message)
 
-print("Streaming Chat response:", partial_message)
+print("Streaming Chat response:", accumulated_message)

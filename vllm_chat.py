@@ -1,3 +1,4 @@
+""" Esempio di utilizzo dell'API VLLM per generare testo dai prompt. """
 from vllm import LLM, SamplingParams
 
 prompts = [
@@ -15,6 +16,6 @@ llm = LLM(model=MODEL_ID)
 outputs = llm.generate(prompts, sampling_params)
 
 for output in outputs:
-    prompt = output.prompt
-    generated_text = output.outputs[0].text
-    print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
+	prompt = output.prompt
+	generated_text = output.outputs[0].text
+	print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
